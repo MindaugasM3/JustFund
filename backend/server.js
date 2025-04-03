@@ -1,11 +1,22 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import db from './config/db.js';// kol nera routeriu
+import usersRouter from './routes/users.routes.js';
+import fundsRouter from './routes/funds.routes.js';
 
-const app = express()
+dotenv.config()
+
+const frontURL = 'http://localhost:5173';
+const PORT = process.env.PORT || 3000;
+const SECRET_KEY = process.env.SECRET_KEY;
+
+const app = express();
+
+app.use('/user', usersRouter)
+app.use('/funds', fundsRouter)
 
 
-app.listen(3000, _ => {
-    console.log('serveris veikia per http://localhost:3000 porta')
-})
+app.listen(PORT, _ => {
+    console.log(`server started at http://localhost:${PORT}`);
+});

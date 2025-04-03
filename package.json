@@ -4,13 +4,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "back": "node --watch ./backend/server.js",
+    "backend": "node --watch backend/server.js",
     "seed": "node ./backend/seed/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MindaugasM3/JustFund.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
+  "bugs": {
+    "url": "https://github.com/MindaugasM3/JustFund/issues"
+  },
+  "homepage": "https://github.com/MindaugasM3/JustFund#readme",
   "description": "",
   "dependencies": {
     "@faker-js/faker": "^9.6.0",
@@ -20,7 +28,6 @@
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.14.0",
-    "npm": "^11.2.0"
+    "mysql2": "^3.14.0"
   }
 }
