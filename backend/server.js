@@ -13,8 +13,8 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 const app = express();
 
-app.use('/user', usersRouter)
-app.use('/funds', fundsRouter)
+app.use('/auth', usersRouter)
+app.use('/api', fundsRouter)
 
 
 app.listen(PORT, _ => {

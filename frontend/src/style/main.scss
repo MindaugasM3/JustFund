@@ -1,0 +1,102 @@
+@use 'var' as v;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    }
+ 
+.highlighted {
+    border-bottom: 2px solid v.$green;
+}
+ 
+section.main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0 20px;
+    max-width: v.$xl;
+}
+ 
+.bin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+
+    &.bin-20 {
+        width: 20%;
+
+    }
+    &.bin-30 {
+        width: 30%;
+
+    }
+    &.bin-40 {
+        width: 40%;
+
+    }
+    &.bin-50 {
+        width: 50%;
+
+    }
+    &.bin-60 {
+        width: 60%;
+
+    }
+    &.bin-70 {
+        width: 70%;
+
+    }
+    &.bin-80 {
+        width: 80%;
+    }
+}
+ 
+button {
+    box-shadow: 3px 3px 3px v.$gray;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 50px;
+    transition: 0.3s;
+
+    &.red-btn { 
+        background-color: v.$red;
+    }
+    
+    &.yellow-btn {
+        background-color: v.$yellow;
+    }
+    
+    &.green-btn {
+        background-color: v.$d_green;
+    }
+    
+    &.green-btn:hover {
+        padding: 10px 60px;
+        background-image: linear-gradient(to right, v.$l_green, v.$green);
+    }
+    
+    &.green-btn:active {
+        background-image: linear-gradient(to right, v.$green, v.$green);
+    }
+
+    &.yellow-btn:hover {
+        padding: 10px 60px;
+        background-image: linear-gradient(to right, v.$yellow, v.$d_yellow);
+    }
+
+    &.yellow-btn:active {
+        background-image: linear-gradient(to right, v.$d_yellow, v.$d_yellow);
+    }
+    &.red-btn:hover {
+        padding: 10px 60px;
+        background-image: linear-gradient(to right, v.$red, v.$d_red);
+    }
+
+    &.red-btn:active {
+        background-image: linear-gradient(to right, v.$d_red, v.$d_red);
+    }
+}

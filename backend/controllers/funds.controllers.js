@@ -1,3 +1,4 @@
+import db from "../config/db.js";
 import { error500 } from "../middlewares/errorHandlers.js"
 
 export const getFunds = (req, res) => {

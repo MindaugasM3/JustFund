@@ -1,0 +1,55 @@
+@use 'var' as v;
+
+section {
+    display: flex;
+    width: 100vw;
+    padding: 50px;
+    height: 700px;
+
+    .navigator-box {
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column; 
+        width: 100%;
+
+        .navigacija {
+            border: 1px solid black;
+            height: 20%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .view-slider {
+            display: flex;
+            flex-direction: row;
+            border: 1px solid black;
+            height: 80%;
+            justify-content: space-between;
+            
+            .slide-left, .slide-right {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .middle {
+                display: flex;
+                border: 1px solid black;
+                width: 70%;
+                justify-content: center;
+                align-items: center;
+
+                .show-three {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 20px;
+                    justify-content: space-evenly;
+
+                    div {
+                        padding: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

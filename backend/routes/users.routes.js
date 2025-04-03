@@ -3,15 +3,15 @@ import {getUserAuth, logoutUser, registerNewUser, updateUser, usersData} from '.
 
 const usersRouter = express.Router();
 
-usersRouter.get('/user', usersData)
+usersRouter.get('/users', usersData)
 
-usersRouter.post('/register', registerNewUser)
+usersRouter.post('/user/register', registerNewUser)
 
-usersRouter.put('auth/update' ,updateUser)
+usersRouter.put('/user/update' ,updateUser)
 
-usersRouter.get('/auth/login', getUserAuth)
+usersRouter.get('/user/login', getUserAuth)
 
-usersRouter.post('/auth/logout', logoutUser)
+usersRouter.post('/user/logout', logoutUser)
 
 // maybe delete?
 

@@ -3,13 +3,13 @@ import { createFund, deleteFund, editFund, getFunds } from '../controllers/funds
 
 const fundsRouter = express.Router();
 
-fundsRouter.get('/fetch', getFunds);
+fundsRouter.get('/funds', getFunds);
 
-fundsRouter.put('/update/:id', editFund);
+fundsRouter.put('/fund/update/:id', editFund);
 
-fundsRouter.post('/new', createFund);
+fundsRouter.post('/fund/new', createFund);
 
-fundsRouter.delete('/delete/:id', deleteFund);
+fundsRouter.delete('/fund/delete/:id', deleteFund);
 
 
 export default fundsRouter;
