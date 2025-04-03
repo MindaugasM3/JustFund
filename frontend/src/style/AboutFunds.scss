@@ -1,0 +1,23 @@
+@use 'var' as v;
+
+.section-about {
+    background-color: v.$l_green;
+
+    &__box {
+        padding: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 15%;
+
+        &__title{
+        font-size: 48px;
+        }
+
+        &__paragraph {
+            line-height: 40px;
+            font-weight: 500;
+            font-size: 32px;
+        }
+    }
+}

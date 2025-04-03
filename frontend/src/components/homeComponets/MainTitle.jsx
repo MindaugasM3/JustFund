@@ -1,5 +1,5 @@
-import main from '../assets/main.jpg';
-import '../style/MainTittle.scss'
+import main from '../../assets/main.jpg';
+import '../../style/MainTittle.scss'
 
 function MainTitle() {
     return (

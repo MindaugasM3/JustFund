@@ -1,6 +1,7 @@
+import AboutFunds from "../components/homeComponets/AboutFunds"
 import Header from "../components/Header"
-import MainTitle from "../components/MainTitle"
-import NewFunds from "../components/NewFunds"
+import MainTitle from "../components/homeComponets/MainTitle"
+import NewFunds from "../components/homeComponets/NewFunds"
 
 
 function Home() {
@@ -9,6 +10,7 @@ function Home() {
             <Header/>
             <MainTitle/>
             <NewFunds/>
+            <AboutFunds/>
         </>
     )
 }

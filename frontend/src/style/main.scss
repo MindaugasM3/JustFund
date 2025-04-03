@@ -6,6 +6,10 @@
     box-sizing: border-box;
     text-decoration: none;
     }
+
+p {
+    font-family: v.$pt;
+}
  
 .highlighted {
     border-bottom: 2px solid v.$green;
@@ -14,7 +18,7 @@
 section.main {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
     padding: 0 20px;
     max-width: v.$xl;
 }

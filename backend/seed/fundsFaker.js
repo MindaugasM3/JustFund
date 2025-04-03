@@ -7,8 +7,8 @@ export async function createFund() {
         title: faker.finance.accountName(),
         description: faker.lorem.paragraph(),
         category: faker.book.genre(),
-        funded: faker.finance.amount(),
-        fund_goal: (parseFloat(faker.finance.amount()) + parseFloat(faker.finance.amount())),
+        funded: faker.finance.amount({min: 0, max: 1000}),
+        fund_goal: faker.finance.amount({min: 1000, max: 2000}),
         votes: JSON.stringify({l: faker.number.int(), d: faker.number.int()})
     }
 }
