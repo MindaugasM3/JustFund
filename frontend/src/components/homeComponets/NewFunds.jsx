@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useFunds } from '../../reducers/funds'
 import '../../style/NewFunds.scss'
 import NewFundsSliderCards from './NewFundsSliderCards';
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
+import { useFunds } from '../../reducers/usefunds';
 
 
 
 function NewFunds() {
 
-    const [firstThree, setFirstThree] = useState(true)
     const {fetchFunds, funds} = useFunds();
 
     useEffect(() => {
@@ -17,7 +16,6 @@ function NewFunds() {
     }, [fetchFunds])
 
 
-    
     const newestSixFunds = funds.filter(fund => fund.id <= funds.length-4);
 
 

@@ -1,0 +1,36 @@
+@use 'var' as v;
+
+.second-menu {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 84px 0 48px 0;
+    gap: 24px;
+}
+.footer-menu {
+    display: flex;
+
+    span {
+        color: v.$black;
+        font-weight: 600;
+        font-size: 16px;
+        margin: 20px 20px;
+    }
+
+    .active-footer {
+        display: none;
+        gap: 20px;
+        border: 1px solid black;
+        
+    }
+      
+}
+
+ 
+
+.footer-social a {
+    margin: 0 12px;
+    font-size: 30px;
+    color: v.$black;
+}
