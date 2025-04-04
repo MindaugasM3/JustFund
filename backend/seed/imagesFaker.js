@@ -9,7 +9,7 @@ export async function createImage() {
     
     return {
         fund_id: count,
-        url: faker.image.url(),
+        url: faker.image.urlPicsumPhotos(),
         main: 1
     }
 }

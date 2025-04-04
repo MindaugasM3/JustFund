@@ -5,7 +5,7 @@ function AboutFunds() {
         <section className='section-about'>
             <div className='section-about__box'>
                 <div className='section-about__box__title'>
-                    <h2>Justfund fondai paprasti patikimi ir greiti.</h2>
+                    <h2>Justfund fondai paprasti, patikimi ir greiti.</h2>
                 </div>
                 <div className='section-about__box__paragraph'>
                     <p>

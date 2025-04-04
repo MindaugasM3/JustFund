@@ -2,8 +2,6 @@ function NewFundsSliderCards({fundData}) {
 
     const funded = (fundData.funded / fundData.fund_goal) * 100 ;
 
-    console.log(funded)
-
     return (
         <div className='new-funds-card'>
             <div className='top-new-fund-card'>

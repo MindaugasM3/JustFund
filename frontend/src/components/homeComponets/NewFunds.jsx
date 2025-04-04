@@ -13,7 +13,7 @@ function NewFunds() {
 
     useEffect(() => {
         fetchFunds();
-    }, [fetchFunds])
+    }, [])
 
 
     const newestSixFunds = funds.filter(fund => fund.id <= funds.length-4);

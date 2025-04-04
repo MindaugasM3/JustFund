@@ -3,6 +3,8 @@ import MainTitle from "../components/homeComponets/MainTitle"
 import NewFunds from "../components/homeComponets/NewFunds"
 
 function Home() {
+
+    
     return (
         <>
             <MainTitle/>

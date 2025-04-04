@@ -1,0 +1,85 @@
+@use 'var' as v;
+
+.funds-page {
+    display: flex;
+    gap: 20px;
+    height: 100%;
+
+    &__categories {
+        border-right: 1px solid v.$l_gray;
+        padding: 10% 5% 10% 5%;
+        font-size: 150%;
+        background-color: v.$vl_gray;
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        margin: 3%;
+        gap: 20%;
+
+        &__search {
+            display: flex;
+            gap: 10px;
+        }
+
+
+        &__funds {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+}
+
+.fund-card{
+    // border: 1px solid black;
+    margin: 40px;
+    min-width: 310px;
+    max-width: 20%;
+    height: 350px;
+
+    &__pad {
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+        align-items: left;
+        gap: 10px;
+
+        .fund-date {
+            display: flex;
+            justify-content: right;
+        }
+
+        .fund-bar {
+            display: flex;
+            width: 100%;
+            background-color: v.$gray;
+            border-radius: 20px;
+            padding: 5px;
+
+            .fund-raised {
+                background-color: v.$green;
+                padding: 3px;
+                border-radius: 10px;
+            }
+
+        }
+
+        .image-box{
+            width: 100%;
+            height: 200px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                transition: all 0.2s;
+                border-radius: 20px;
+            }
+            img:hover {
+                width: 101%;
+                height: 101%;
+                overflow: hidden;
+            }
+        }
+    }
+}

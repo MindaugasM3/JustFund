@@ -6,8 +6,8 @@ import { createImage } from "./imagesFaker.js";
 import { createComment } from "./commentsFaker.js";
 
 const usersCount = 10;
-const fundsCount = 10;
-const imagesCount = 10;
+const fundsCount = 30;
+const imagesCount = 30;
 const commentsCount = 10;
 let sql;
 
