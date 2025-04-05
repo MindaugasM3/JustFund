@@ -11,7 +11,7 @@ usersRouter.put('/user/update' ,updateUser)
 
 usersRouter.post('/user/login', getUserAuth)
 
-usersRouter.post('/user/logout', logoutUser)
+usersRouter.delete('/user/logout', logoutUser)
 
 // maybe delete?
 

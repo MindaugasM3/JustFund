@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export const useUsers = create(set => ({
     loading: true,
+    loggedin: false,
 
     userRegister: async newUserData => {
 
@@ -35,23 +36,26 @@ export const useUsers = create(set => ({
         set({loading: true})
         try {
             const res = await axios.post('auth/user/login', loginData);
-            set({loading: false});
-            return res.data.data;
+            set({loading: false, loggedin: true});
+            return res.data;
         } catch(error) {
             console.log(error);
             set({loading: false});
             return error.response.data;
         }
     },
-    userLogout: async fundID => {
+    userLogout: async _ => {
+
         set({loading: true})
+
         try {
-            const res = await axios.delete(('api/fund/delete/:id'), fundID);
-            set({loading: false})
+            const res = await axios.delete('auth/user/logout', {withCredentials: true});
+            set({loading: false, loggedin: false})
             return res.data.data;
         } catch(error) {
             console.log(error)
             set({loading: false});
+            return error.response.data;
         }
     }
 }));

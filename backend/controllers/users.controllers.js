@@ -9,6 +9,8 @@ dotenv.config()
 const SECRET_KEY = process.env.SECRET_KEY;
 const tokenExpiration = process.env.tokenExpiration;
 
+
+
 export const usersData = (req, res) => {
     const user_id = req.params.id;
 
@@ -83,7 +85,9 @@ export const getUserAuth = async (req, res) => {
 }
 
 export const logoutUser = (req, res) => {
-    // istrinti token
+    console.log('aaa')
+    res.clearCookie('token', {httpOnly: true, secure: false});
+    res.json({success: true, message: 'Atsijungiai'})
 }
 
 export const updateUser = (req, res) => {

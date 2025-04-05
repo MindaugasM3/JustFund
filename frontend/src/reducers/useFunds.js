@@ -27,7 +27,7 @@ export const useFunds = create(set => ({
 
         set({loading: true})
         try {
-            const res = await axios.post(('api/fund/new'), fund);
+            const res = await axios.post('api/fund/new', fund, {withCredentials: true});
             set({loading: false})
             return res.data.data;
         } catch(error) {
@@ -38,7 +38,7 @@ export const useFunds = create(set => ({
     updateFund: async fundID => {
         set({loading: true})
         try {
-            const res = await axios.put(('api/fund/update/:id'), fundID);
+            const res = await axios.put('api/fund/update/:id', fundID, {withCredentials: true});
             set({loading: false})
             return res.data.data;
         } catch(error) {
@@ -49,7 +49,7 @@ export const useFunds = create(set => ({
     deleteFund: async fundID => {
         set({loading: true})
         try {
-            const res = await axios.delete(('api/fund/delete/:id'), fundID);
+            const res = await axios.delete('api/fund/delete/:id', fundID, {withCredentials: true});
             set({loading: false})
             return res.data.data;
         } catch(error) {

@@ -4,13 +4,21 @@ import { CiSearch } from "react-icons/ci";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaCircleXmark } from "react-icons/fa6";
 import { useState } from 'react';
+import useUsers from '../reducers/useUsers';
 
 export default function Header() {
     const [hamburgerMenu, setHamburgerMenu] = useState(false);
+    const {loggedin, userLogout} = useUsers();
 
     const toggleHamburger = () => {
         setHamburgerMenu(!hamburgerMenu);
     };
+
+    const handleLogout = async _ =>{
+        const res = await userLogout();
+        console.log('atsijungiai', res)
+        console.log(loggedin)
+    }
 
     return (
         <div className='header-bg'>
@@ -23,7 +31,13 @@ export default function Header() {
                 <nav className='header-links'>
                     <NavLink to='/funds' className='navlink'>Fondai</NavLink>
                     <NavLink to='/about' className='navlink'>Apie mus</NavLink>
-                    <NavLink to='/auth' className='navlink'>Prisijungti</NavLink>
+                    {
+                    !loggedin? 
+                    <NavLink to='/authForm' className='navlink'>Prisijungti</NavLink>
+                    :
+                    <span onClick={handleLogout}>Logout</span>
+                    }
+                    
                 </nav>
                 <div className='header-right'>
                     <div className='header-start-fund'>
