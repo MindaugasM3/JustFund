@@ -9,7 +9,7 @@ usersRouter.post('/user/register', registerNewUser)
 
 usersRouter.put('/user/update' ,updateUser)
 
-usersRouter.get('/user/login', getUserAuth)
+usersRouter.post('/user/login', getUserAuth)
 
 usersRouter.post('/user/logout', logoutUser)
 

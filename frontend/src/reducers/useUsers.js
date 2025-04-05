@@ -4,33 +4,43 @@ import axios from 'axios';
 export const useUsers = create(set => ({
     loading: true,
 
-    userRegister: async fund => {
+    userRegister: async newUserData => {
 
-        if(!fund.title || !fund.description || !fund.category || !fund.fund_goal) {
+        if(!newUserData.name || !newUserData.email || !newUserData.password) {
             return ({success: false, message: 'uzpildyk visus laukelius'});
         }
 
-        console.log('naujas fondas =>', fund)
+        console.log('naujas vartotojas =>', newUserData)
 
         set({loading: true})
         try {
-            const res = await axios.post(('api/fund/new'), fund);
-            set({loading: false})
-            return res.data.data;
-        } catch(error) {
-            console.log(error)
+            const res = await axios.post('auth/user/register', newUserData);
             set({loading: false});
+            console.log(res);
+            return res.data;
+        } catch(error) {
+            console.log(error);
+            set({loading: false});
+            return error.response.data;
         }
     },
-    userLogin: async fundID => {
+    userLogin: async loginData => {
+
+        if(!loginData.name || !loginData.password){
+            return ({success: false, message: 'Prašome užpildyk visus laukelius'})
+        }
+
+        console.log('login vartotojas =>', loginData)
+
         set({loading: true})
         try {
-            const res = await axios.put(('api/fund/update/:id'), fundID);
-            set({loading: false})
+            const res = await axios.post('auth/user/login', loginData);
+            set({loading: false});
             return res.data.data;
         } catch(error) {
-            console.log(error)
+            console.log(error);
             set({loading: false});
+            return error.response.data;
         }
     },
     userLogout: async fundID => {
@@ -45,3 +55,5 @@ export const useUsers = create(set => ({
         }
     }
 }));
+
+export default useUsers;

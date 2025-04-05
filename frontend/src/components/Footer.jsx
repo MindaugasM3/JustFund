@@ -44,12 +44,11 @@ function Footer() {
                     
                 </nav>
                 <nav className='footer-social'>
-                    <a href="/#"><FaYoutube /></a>
-                    <a href="/#"><FaFacebook /></a>
-                    <a href="/#"><FaTwitter /></a>
-                    <a href="/#"><FaSnapchatSquare /></a>
-                    <a href="/#"><IoLogoLinkedin />
-                    </a>
+                    <Link href="/#" className="link"><FaYoutube /></Link>
+                    <Link href="/#" className="link"><FaFacebook /></Link>
+                    <Link href="/#" className="link"><FaTwitter /></Link>
+                    <Link href="/#" className="link"><FaSnapchatSquare /></Link>
+                    <Link href="/#" className="link"><IoLogoLinkedin /></Link>
                 </nav>
             </div>
         </footer>

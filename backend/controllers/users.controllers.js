@@ -1,5 +1,13 @@
+import jwt from "jsonwebtoken";
 import db from "../config/db.js"
-import { error400, error500 } from "../middlewares/errorHandlers.js";
+import { error400, error401, error500 } from "../middlewares/errorHandlers.js";
+import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
+
+dotenv.config()
+
+const SECRET_KEY = process.env.SECRET_KEY;
+const tokenExpiration = process.env.tokenExpiration;
 
 export const usersData = (req, res) => {
     const user_id = req.params.id;
@@ -16,40 +24,62 @@ export const usersData = (req, res) => {
 }
 
 export const registerNewUser = (req, res) => {
-    const {name, email, password} = req.body.data;
+    const {name, email, password} = req.body;
 
     if(!name || !email || !password){
-        return error400(res, 'uzpildikyte visus laukelius')
+        return error400(res, 'uzpildikyte visus laukelius');
     }
 
     const sql = `
         SELECT name, email, password FROM users WHERE name = ? AND email = ?
     `
 
-    db.query(sql, [name, email], (err, result) => {
-        if (err) return error500(res, err)
-        if (result.affectedRows > 0) {
-            return error400(res, 'toks vardas ar email jau nadojamas')
+    db.query(sql, [name, email], async (err, result) => {
+        if (err) return error500(res, err);
+        if (result.length > 0) {
+            return error400(res, 'toks vardas ar email jau nadojamas');
         } 
 
-        //token
-    })
+        const userSql = `
+            INSERT INTO users (name, email, password)
+            VALUES (?, ?, ?)
+        `
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        db.query(userSql, [name, email, hashedPassword], (err, result) => {
+            if(err) return error500(res, err);
+            res.json({success: true, message: 'Vartotojo registracija sekminga'});
+        });
+        
+    });
 
 }
 
-export const getUserAuth = (req, res) => {
-    
+export const getUserAuth = async (req, res) => {
 
+    const {name, password, email} = req.body;
+    console.log(name, password, email)
     const sql = `
         SELECT * FROM users WHERE name = ? OR email = ?
     `
 
-    db.query(sql, [name, email], (err, result) => {
+    db.query(sql, [name, email], async (err, result) => {
         if(err) return error500(res, err);
         if (result.affectedRows === 0) {
             return error400(res, 'tokio vartotojo nerasta');
         }
-    })
+
+        const user = result[0];
+    
+        const comparedPassword = await bcrypt.compare(password, user.password);
+        if(!comparedPassword) return error401(res, 'neteisingas slaptazodis');
+
+        const user_id = user.id;
+        const token = jwt.sign({id: user.id}, SECRET_KEY, {expiresIn: tokenExpiration})
+        res.cookie('token', token, {httpOnly: true, secure: true, maxAge: 3600000*24*7});
+        
+        res.json({success: true, message: 'Prisijungimas sekmingas', user_id});
+    });
 }
 
 export const logoutUser = (req, res) => {

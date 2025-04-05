@@ -1,5 +1,30 @@
 @use 'var' as v;
 
+.link {
+    text-decoration: none;
+    color: v.$black;
+}
+
+.link:hover {
+    text-decoration: none;
+    color: v.$black;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px v.$l_gray;
+}
+
+.navlink {
+    text-decoration: none;
+    color: v.$black;
+    margin: 5px;
+}
+
+.navlink:hover {
+    text-decoration: none;
+    color: v.$black;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px v.$l_gray;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -103,4 +128,12 @@ button {
     &.red-btn:active {
         background-image: linear-gradient(to right, v.$d_red, v.$d_red);
     }
+}
+
+input {
+    border-radius: 10px;
+    height: 25px;
+    border: 1px solid v.$gray;
+    margin: 5px;
+    padding: 5px;
 }

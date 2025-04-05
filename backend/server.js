@@ -6,13 +6,12 @@ import usersRouter from './routes/users.routes.js';
 import fundsRouter from './routes/funds.routes.js';
 
 dotenv.config()
+const app = express();
 
 const frontURL = 'http://localhost:5173';
 const PORT = process.env.PORT || 3000;
-const SECRET_KEY = process.env.SECRET_KEY;
 
-const app = express();
-
+app.use(express.json())
 app.use('/auth', usersRouter)
 app.use('/api', fundsRouter)
 
