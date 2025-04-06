@@ -9,11 +9,12 @@ import { useEffect } from 'react';
 import PrivateRoutes from './components/authComponents/PrivateRoutes';
 import PublicRoutes from './components/authComponents/PublicRoutes';
 import { RingLoader } from 'react-spinners';
-import ProfileLayout from './components/profileComponents/ProfileLayout';
 import UserData from './components/profileComponents/UserData';
 import StartNewFund from './components/profileComponents/StartNewFund';
 import OwnedFunds from './components/profileComponents/OwnedFunds';
 import History from './components/profileComponents/History';
+import ProfileLayout from './components/ProfileLayout';
+import Fund from './pages/Fund';
 
     
 function App() {
@@ -51,6 +52,7 @@ function App() {
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>
                 <Route path='*' element={<Page404/>}/>
+                <Route path='fund/:id' element={<Fund/>}/>
                 <Route path='funds' element={<FundsList/>}/>
                 <Route path='loginForm' element={<PublicRoutes><AuthForm/></PublicRoutes>}/>
                     <Route element={<PrivateRoutes><ProfileLayout /></PrivateRoutes>}>

@@ -1,14 +1,12 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
-import '../../style/Profile.scss';
+import { Link, Outlet } from "react-router-dom";
+import '../style/Profile.scss';
 import { RingLoader } from "react-spinners";
-import useUsers from "../../reducers/useUsers";
-
-
+import useUsers from "../reducers/useUsers";
+import { useEffect, useState } from "react";
 
 function ProfileLayout() {
 
     const {loading} = useUsers();
-
 
     if(loading){
         return (
@@ -17,7 +15,6 @@ function ProfileLayout() {
             </div>
         )
     }
-
 
     return (
         <section className='profile'>

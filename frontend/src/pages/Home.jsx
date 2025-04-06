@@ -1,6 +1,6 @@
-import AboutFunds from "../components/homeComponets/AboutFunds"
-import MainTitle from "../components/homeComponets/MainTitle"
-import NewFunds from "../components/homeComponets/NewFunds"
+import AboutFunds from "../components/homeComponets/AboutFunds";
+import MainTitle from "../components/homeComponets/MainTitle";
+import NewFunds from "../components/homeComponets/NewFunds";
 
 function Home() {
 

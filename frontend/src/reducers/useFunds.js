@@ -1,9 +1,12 @@
 import {create} from 'zustand';
 import axios from 'axios';
+import {v4} from 'uuid';
 
 export const useFunds = create(set => ({
     loading: true,
     funds: [],
+    images: [],
+    // setImages: newimage => set(state => ({images: [...images, newimage]})),
     setFunds: newfund => set({...funds, newfund}),
 
     fetchFunds: async _ => {
@@ -56,5 +59,44 @@ export const useFunds = create(set => ({
             console.log(error)
             set({loading: false});
         }
-    }
+    },
+    
+
+    imageReader: img => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(img);
+            console.log(img)
+            reader.onload = _ => resolve(reader.result);
+            reader.onerror = error => reject(error); 
+        })
+    
+    },
+    addImage: () =>
+        set(state => {
+          const isMain = state.images.length === 0;
+          const newImage = {
+            id: v4(),
+            src: null,
+            main: isMain,
+          };
+          return { images: [...state.images, newImage] };
+    }),
+
+    updateImage: (id, src) => {
+        set(state => ({
+            images: state.images.map(image => image.id === id? {...image, src} : image)
+        }))
+    },
+    deleteImage: id => {
+        set(state => ({
+            images: state.images.filter(image => image.id !== id || image.main !== false)
+        }))
+    },
+    mainImage: id => {
+        set(state => ({
+            images: state.images.map(image => image.id === id? {...image, main:true} : {...image, main:false})
+        }))
+    },
+    
 }));

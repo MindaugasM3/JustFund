@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Login from "../components/authComponents/Login"
-import Register from "../components/authComponents/Register"
-import '../style/AuthForm.scss'
+import Login from "../components/authComponents/Login";
+import Register from "../components/authComponents/Register";
+import '../style/AuthForm.scss';
 import { Link } from "react-router-dom";
 
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../style/Footer.scss'
+import '../style/Footer.scss';
 import { FaYoutube } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";

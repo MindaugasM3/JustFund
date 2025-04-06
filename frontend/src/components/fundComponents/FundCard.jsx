@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 
 function FundCard({fundData}) {
 
     const funded = (fundData.funded / fundData.fund_goal) * 100;
 
     return (
-        <div className="fund-card">
+        <Link to={`/fund/${fundData.id}`} className="fund-card">
             <div className="fund-card__pad">
                 <div className="image-box">
                     <img src={fundData.url} alt={fundData.title} />
@@ -17,7 +18,7 @@ function FundCard({fundData}) {
                 <span>€ {fundData.funded}</span>
                 <span className="fund-date">{fundData.updated_at.split('T')[0]}</span>
             </div>
-        </div>
+        </Link>
     )
 }
 

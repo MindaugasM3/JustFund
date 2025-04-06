@@ -5,6 +5,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaCircleXmark } from "react-icons/fa6";
 import { useState } from 'react';
 import useUsers from '../reducers/useUsers';
+import { ImExit } from "react-icons/im";
+
 
 export default function Header() {
     const [hamburgerMenu, setHamburgerMenu] = useState(false);
@@ -35,7 +37,10 @@ export default function Header() {
                     !loggedin? 
                     <NavLink to='/loginForm' className='navlink'>Prisijungti</NavLink>
                     :
-                    <span onClick={handleLogout}>Logout</span>
+                    <span className='header-spans'>
+                        <NavLink className='navlink' to='/user'>Profilis</NavLink>
+                        <span className='navlink' onClick={handleLogout}><ImExit /></span>
+                    </span>
                     }
                     
                 </nav>

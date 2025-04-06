@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import useUserData from "../../reducers/useUserData"
 import { RingLoader } from "react-spinners"
-
+import { FaPencilAlt } from "react-icons/fa";
 
 function UserData() {
 
@@ -29,7 +29,23 @@ function UserData() {
     
 
     return (
-        <div>{userData?.id}, {userData?.name}</div>
+        <div>
+            <div>Pakeisti <FaPencilAlt /></div>
+            <div>
+
+                <div>
+                    {userData?.avatar}  
+                </div>
+                <div>
+                    {userData?.id}, {userData?.name}, {userData?.email}
+                </div>
+                <div>
+                    {useUserData?.user_description}
+                </div>
+                    <button className="yellow-btn">Patvirtinti</button>
+
+            </div>
+        </div>
     )
 }
 

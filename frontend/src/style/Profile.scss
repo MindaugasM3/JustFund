@@ -14,7 +14,7 @@
             font-family: v.$ibm;
             border-radius: 15px;
             padding: 10px;
-            transition: all 1s;
+            transition: all .5s;
         }
 
         .profile-link:hover {
@@ -22,7 +22,75 @@
         }
 
         .selected {
-            border-bottom: red;
+            background-color: red;
         }
+    }
+}
+
+.new-fund {
+    padding: 60px;
+}
+
+.add-image {
+    background-color: v.$green;
+    padding: 10px;
+    width: 100px;
+    border-radius: 20px;
+    transition: all .5s;    
+}
+
+.add-image:hover {
+    background-color: v.$d_green;
+    box-shadow: 2px 2px 2px v.$gray;
+}
+
+.images {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    height: 80%;
+
+    .image-card {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: 250px;
+        padding: 20px;
+        
+
+        .controllers{
+            width: 100%;
+            height: 60px;
+            display: flex;
+            gap: 20px;
+            justify-content: space-around;
+            padding-top: 15px;
+            
+
+            .input-btn {
+                display: none;
+            }
+
+            label {
+                padding: 10px;
+                transition: all 0.5s;
+            }
+
+            label:hover {
+                background-color: v.$gray;
+                border-radius: 10px;
+            }
+
+        }
+        .image-box{
+            width: 100%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
     }
 }
