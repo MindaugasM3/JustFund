@@ -37,7 +37,6 @@ function NewFunds() {
         slides.style.transform = `translateX(${-index * slideWidth}%)`;
     }
 
-    console.log(newestSixFunds)
     return (
         <section>
             <div className='navigator-box'>

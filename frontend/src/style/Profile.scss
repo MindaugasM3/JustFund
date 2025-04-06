@@ -1,0 +1,10 @@
+@use 'var' as v;
+
+.profile {
+    background-color: lightgray;
+
+    &__navigator {
+        display: flex;
+        flex-direction: column;
+    }
+}

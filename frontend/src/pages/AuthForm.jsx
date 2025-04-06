@@ -1,9 +1,3 @@
-
-
-// padaryti register/loging/logout 2
-// padaryti profile 2
-// padaryti add fund 2
-
 import { useState } from "react";
 import Login from "../components/authComponents/Login"
 import Register from "../components/authComponents/Register"

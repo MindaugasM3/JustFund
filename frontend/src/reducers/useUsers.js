@@ -4,6 +4,9 @@ import axios from 'axios';
 export const useUsers = create(set => ({
     loading: true,
     loggedin: false,
+    userData: [],
+    setUserData: userData => set({loggedin: true, userData}),
+    // setLoggedin: loggedin => set({loggedin: loggedin}),
 
     userRegister: async newUserData => {
 
@@ -57,7 +60,20 @@ export const useUsers = create(set => ({
             set({loading: false});
             return error.response.data;
         }
+    },
+    checkForAuth: async _ => {
+        set({loading: true})
+        try {
+            const res = await axios.get('auth/user', {withCredentials: true})
+            set({loading: false})
+            return {success: true, data: res.data.user_id};
+        } catch(error) {
+            set({loading: false})
+            console.log(error)
+            return {success: false, error: error};
+        }
     }
+
 }));
 
 export default useUsers;

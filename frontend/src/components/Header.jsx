@@ -33,7 +33,7 @@ export default function Header() {
                     <NavLink to='/about' className='navlink'>Apie mus</NavLink>
                     {
                     !loggedin? 
-                    <NavLink to='/authForm' className='navlink'>Prisijungti</NavLink>
+                    <NavLink to='/loginForm' className='navlink'>Prisijungti</NavLink>
                     :
                     <span onClick={handleLogout}>Logout</span>
                     }

@@ -93,3 +93,19 @@ export const logoutUser = (req, res) => {
 export const updateUser = (req, res) => {
     
 }
+
+export const userAuthCheck = (req, res) => {
+    const token = req.cookies?.token;
+
+    if(!token) {
+        error401(res, 'Neprisijunges')
+    }
+
+    try {
+        const decocoded = jwt.verify(token, process.env.SECRET_KEY)
+        req.user = decocoded;
+        return res.json({success: true, message: `prisijunges`, user_id: req.user.id});
+    } catch(error){
+        return res.status(403).json({success: false, message: 'netinkamas tokenas'});
+    }
+}
