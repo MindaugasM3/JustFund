@@ -6,7 +6,6 @@ export const useUsers = create(set => ({
     loggedin: false,
     userData: [],
     setUserData: userData => set({loggedin: true, userData}),
-    // setLoggedin: loggedin => set({loggedin: loggedin}),
 
     userRegister: async newUserData => {
 
@@ -18,7 +17,7 @@ export const useUsers = create(set => ({
 
         set({loading: true})
         try {
-            const res = await axios.post('auth/user/register', newUserData);
+            const res = await axios.post('/auth/user/register', newUserData);
             set({loading: false});
             console.log(res);
             return res.data;
@@ -38,7 +37,7 @@ export const useUsers = create(set => ({
 
         set({loading: true})
         try {
-            const res = await axios.post('auth/user/login', loginData);
+            const res = await axios.post('/auth/user/login', loginData);
             set({loading: false, loggedin: true});
             return res.data;
         } catch(error) {
@@ -52,7 +51,7 @@ export const useUsers = create(set => ({
         set({loading: true})
 
         try {
-            const res = await axios.delete('auth/user/logout', {withCredentials: true});
+            const res = await axios.delete('/auth/user/logout', {withCredentials: true});
             set({loading: false, loggedin: false})
             return res.data.data;
         } catch(error) {
@@ -64,8 +63,9 @@ export const useUsers = create(set => ({
     checkForAuth: async _ => {
         set({loading: true})
         try {
-            const res = await axios.get('auth/user', {withCredentials: true})
+            const res = await axios.get('/auth/user', {withCredentials: true})
             set({loading: false})
+            console.log(res)
             return {success: true, data: res.data.user_id};
         } catch(error) {
             set({loading: false})

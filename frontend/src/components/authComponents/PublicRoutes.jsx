@@ -15,7 +15,7 @@ function PublicRoutes({children}) {
         )
     }
 
-    return (loggedin? <Navigate to='/profile'/> : children);
+    return (loggedin? <Navigate to='/user'/> : children);
 } 
 
 export default PublicRoutes

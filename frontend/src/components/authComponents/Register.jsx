@@ -13,8 +13,6 @@ function Register() {
         console.log(resRegister)
         
         
-        
-        
         setRegister({name: '', email: '', password: ''});
     }
 

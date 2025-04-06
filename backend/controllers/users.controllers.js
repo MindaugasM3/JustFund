@@ -11,7 +11,7 @@ const tokenExpiration = process.env.tokenExpiration;
 
 
 
-export const usersData = (req, res) => {
+export const userAuthData = (req, res) => {
     const user_id = req.params.id;
 
     const sql = `
@@ -90,9 +90,9 @@ export const logoutUser = (req, res) => {
     res.json({success: true, message: 'Atsijungiai'})
 }
 
-export const updateUser = (req, res) => {
+// export const updateUser = (req, res) => {
     
-}
+// }
 
 export const userAuthCheck = (req, res) => {
     const token = req.cookies?.token;

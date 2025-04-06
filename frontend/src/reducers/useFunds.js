@@ -49,7 +49,7 @@ export const useFunds = create(set => ({
     deleteFund: async fundID => {
         set({loading: true})
         try {
-            const res = await axios.delete('api/fund/delete/:id', fundID, {withCredentials: true});
+            const res = await axios.delete('/api/fund/delete/:id', fundID, {withCredentials: true});
             set({loading: false})
             return res.data.data;
         } catch(error) {

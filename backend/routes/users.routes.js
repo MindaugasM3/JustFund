@@ -1,13 +1,13 @@
 import express from 'express';
-import {getUserAuth, logoutUser, registerNewUser, updateUser, userAuthCheck, usersData} from '../controllers/users.controllers.js'
+import {getUserAuth, logoutUser, registerNewUser, userAuthCheck, userAuthData} from '../controllers/users.controllers.js'
 
 const usersRouter = express.Router();
 
-usersRouter.get('/users', usersData)
+usersRouter.get('/users', userAuthData)
 
 usersRouter.post('/user/register', registerNewUser)
 
-usersRouter.put('/user/update', updateUser)
+// usersRouter.put('/user/update', updateUser)
 
 usersRouter.post('/user/login', getUserAuth)
 

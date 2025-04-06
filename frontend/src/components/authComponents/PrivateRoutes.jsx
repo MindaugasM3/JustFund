@@ -1,21 +1,27 @@
 import React from 'react';
 import useUsers from '../../reducers/useUsers';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { RingLoader } from 'react-spinners';
 
-function PrivateRoutes({children}) {
-    
-    const {loggedin, loading} = useUsers();
+function PrivateRoutes({ children }) {
+    const { loggedin, loading } = useUsers();
 
-    if(loading) {
+    // Show loader while checking auth
+    if (loading || loggedin === null || typeof loggedin === 'undefined') {
         return (
             <div className='spinner-box'>
-                <RingLoader size={300}/>
+                <RingLoader size={300} />
             </div>
-        )
+        );
     }
 
-    return (!loggedin? <Navigate to='/loginForm'/> : children);
-} 
+    // If not logged in, redirect to login
+    if (!loggedin) {
+        return <Navigate to='/loginForm' />;
+    }
 
-export default PrivateRoutes
+    // If logged in, render children or nested route
+    return children || <Outlet />;
+}
+
+export default PrivateRoutes;

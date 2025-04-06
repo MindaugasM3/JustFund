@@ -9,18 +9,19 @@ import { useEffect } from 'react';
 import PrivateRoutes from './components/authComponents/PrivateRoutes';
 import PublicRoutes from './components/authComponents/PublicRoutes';
 import { RingLoader } from 'react-spinners';
-import ProfileNavigator from './components/profileComponents/ProfileNavigator';
 import ProfileLayout from './components/profileComponents/ProfileLayout';
+import UserData from './components/profileComponents/UserData';
+import StartNewFund from './components/profileComponents/StartNewFund';
+import OwnedFunds from './components/profileComponents/OwnedFunds';
+import History from './components/profileComponents/History';
 
     
 function App() {
 
-    const {checkForAuth, loading, setUserData, setLoggedin, loggedin} = useUsers();
+    const {checkForAuth, loading, setUserData} = useUsers();
 
     
-        
     useEffect(() => {
-
         // setTimeout(() => {
         const checkAuth = async _ => {
             const res = await checkForAuth();
@@ -28,20 +29,14 @@ function App() {
             if(res.success === false) {
                 // setLoggedin(false)
                 return console.log(res.error)
-
             }
+            console.log(res)
             setUserData(res.data);
         }
-
         checkAuth()
         // }, 1000);
-
         }, [])
 
-
-
-    
-    
 
     if(loading){
         return (
@@ -54,13 +49,16 @@ function App() {
     return (
         <Routes>
             <Route path='/' element={<Layout/>}>
-                <Route index end element={<Home/>}/>
+                <Route index element={<Home/>}/>
                 <Route path='*' element={<Page404/>}/>
                 <Route path='funds' element={<FundsList/>}/>
                 <Route path='loginForm' element={<PublicRoutes><AuthForm/></PublicRoutes>}/>
-                <Route path='profile' element={<PrivateRoutes><ProfileLayout/></PrivateRoutes>}>
-                    {ProfileNavigator()} // kaip komponentas neveikia
-                </Route>
+                    <Route element={<PrivateRoutes><ProfileLayout /></PrivateRoutes>}>
+                        <Route path='user' element={<UserData />} />
+                        <Route path='newfund' element={<StartNewFund />} />
+                        <Route path='userfunds' element={<OwnedFunds />} />
+                        <Route path='history' element={<History />} />
+                    </Route>
             </Route>
         </Routes>
     )

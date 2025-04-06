@@ -6,6 +6,8 @@ import History from "./History"
 
 
 function ProfileNavigator() {
+
+
     return (
             <>
                 <Route index path='user' element={<UserData/>}/>

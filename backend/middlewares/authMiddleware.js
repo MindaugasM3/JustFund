@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { error401 } from './errorHandlers';
+import { error401 } from './errorHandlers.js';
 
 
 export const authMiddlewareToken = (req, res, next) => {
