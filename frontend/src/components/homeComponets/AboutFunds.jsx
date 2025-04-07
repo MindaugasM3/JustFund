@@ -2,7 +2,7 @@ import '../../style/AboutFunds.scss'
 
 function AboutFunds() {
     return (
-        <section className='section-about'>
+        <section className='section-about section'>
             <div className='section-about__box'>
                 <div className='section-about__box__title'>
                     <h2>Justfund fondai paprasti, patikimi ir greiti.</h2>

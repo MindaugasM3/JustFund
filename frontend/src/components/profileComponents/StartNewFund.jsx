@@ -4,10 +4,12 @@ import { useFunds } from "../../reducers/usefunds";
 
 function StartNewFund() {
 
-    const {images, addImage, imageReader, updateImage, deleteImage, mainImage} = useFunds()
+    const {images, addImage, imageReader, updateImage, deleteImage, mainImage, createNewFund} = useFunds()
     const [newFundData, setNewFundData] = useState({title: '', description: '', category: '', fund_goal: ''})
 
-    const submitNewFund = _ => {
+    const submitNewFund = async _ => {
+        const res = await createNewFund(newFundData, images);
+        console.log(res)
 
     }
 
@@ -27,7 +29,6 @@ function StartNewFund() {
     return (
         <div className="new-fund">
             <div>
-                <div>fund will need user_id</div>
                 <div>
                     <label htmlFor="title">Pavadinimas</label>
                     <input id="title" 

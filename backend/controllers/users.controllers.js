@@ -72,8 +72,8 @@ export const getUserAuth = async (req, res) => {
         }
 
         const user = result[0];
-    
         const comparedPassword = await bcrypt.compare(password, user.password);
+
         if(!comparedPassword) return error401(res, 'neteisingas slaptazodis');
 
         const user_id = user.id;

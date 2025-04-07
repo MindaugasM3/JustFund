@@ -12,7 +12,16 @@ export default defineConfig({
         },
         '/auth': {
             target: 'http://localhost:3000',
+        },
+        '/uploads/': {
+            target: 'http://localhost:3000'
         }
-    }
-  }
+        }
+    },
+
+    // optimizeDeps: {
+    //     include: ['react-toastify']
+    // },
+  
+  
 })

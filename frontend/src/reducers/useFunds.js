@@ -3,7 +3,7 @@ import axios from 'axios';
 import {v4} from 'uuid';
 
 export const useFunds = create(set => ({
-    loading: true,
+    loading: false,
     funds: [],
     images: [],
     // setImages: newimage => set(state => ({images: [...images, newimage]})),
@@ -20,23 +20,49 @@ export const useFunds = create(set => ({
             set({loading: false});
         }
     },
-    createNewFund: async fund => {
+
+    createNewFund: async (fund, images) => {
 
         if(!fund.title || !fund.description || !fund.category || !fund.fund_goal) {
             return ({success: false, message: 'uzpildyk visus laukelius'});
         }
 
-        console.log('naujas fondas =>', fund)
+        if(images.length === 0) {
+            return ({success: false, message: 'Nuotrauka privalo buti'});
+        }
+
 
         set({loading: true})
+        console.log('naujas fondas =>', fund)
+        let fund_id
+
+        
         try {
-            const res = await axios.post('api/fund/new', fund, {withCredentials: true});
-            set({loading: false})
-            return res.data.data;
+            const resData = await axios.post('api/fund/new', fund, {withCredentials: true});
+            // set({loading: false})
+            // return res.data.data;
+            fund_id = resData.data.data;
+            
+            if (!resData.data.success) {
+                return ({success: false, message: 'nepavyko ikelti duomenu'})
+            }
         } catch(error) {
             console.log(error)
             set({loading: false});
+            return ({success:false, message: 'klaida ikelti duomenu'})
         }
+        
+        try {
+            const res = await axios.post('api/fund/images', {images, fund_id});
+            console.log(res)
+            set({loading: false});
+            return res.data
+        } catch(error) {
+            set({loading: false});
+            console.log(error)
+            return ({success:false, message: 'klaida ikelti nuotrauka'})
+        }
+
     },
     updateFund: async fundID => {
         set({loading: true})
@@ -52,9 +78,12 @@ export const useFunds = create(set => ({
     deleteFund: async fundID => {
         set({loading: true})
         try {
-            const res = await axios.delete('/api/fund/delete/:id', fundID, {withCredentials: true});
+            const res = await axios.delete(`/api/fund/delete/${fundID}`, {withCredentials: true});
             set({loading: false})
-            return res.data.data;
+            set(state => ({
+                funds: state.funds.filter(fund => fund.id !== fundID)
+            }))
+            return res.data;
         } catch(error) {
             console.log(error)
             set({loading: false});

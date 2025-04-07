@@ -15,6 +15,7 @@ import OwnedFunds from './components/profileComponents/OwnedFunds';
 import History from './components/profileComponents/History';
 import ProfileLayout from './components/ProfileLayout';
 import Fund from './pages/Fund';
+import { ToastContainer } from 'react-toastify'
 
     
 function App() {
@@ -48,21 +49,25 @@ function App() {
     }
     
     return (
-        <Routes>
-            <Route path='/' element={<Layout/>}>
-                <Route index element={<Home/>}/>
-                <Route path='*' element={<Page404/>}/>
-                <Route path='fund/:id' element={<Fund/>}/>
-                <Route path='funds' element={<FundsList/>}/>
-                <Route path='loginForm' element={<PublicRoutes><AuthForm/></PublicRoutes>}/>
-                    <Route element={<PrivateRoutes><ProfileLayout /></PrivateRoutes>}>
-                        <Route path='user' element={<UserData />} />
-                        <Route path='newfund' element={<StartNewFund />} />
-                        <Route path='userfunds' element={<OwnedFunds />} />
-                        <Route path='history' element={<History />} />
-                    </Route>
-            </Route>
-        </Routes>
+        <>
+            <ToastContainer className='Toastify__toast-container'/>
+            <Routes>
+                <Route path='/' element={<Layout/>}>
+                    <Route index element={<Home/>}/>
+                    <Route path='*' element={<Page404/>}/>
+                    <Route path='fund/:id' element={<Fund/>}/>
+                    <Route path='funds' element={<FundsList/>}/>
+                    <Route path='loginForm' element={<PublicRoutes><AuthForm/></PublicRoutes>}/>
+                        <Route element={<PrivateRoutes><ProfileLayout /></PrivateRoutes>}>
+                            <Route path='user' element={<UserData />} />
+                            <Route path='newfund' element={<StartNewFund />} />
+                            <Route path='userfunds' element={<OwnedFunds />} />
+                            <Route path='history' element={<History />} />
+                        </Route>
+                </Route>
+            </Routes>
+        </>
+
     )
 }
 

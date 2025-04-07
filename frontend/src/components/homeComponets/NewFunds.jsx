@@ -23,7 +23,7 @@ function NewFunds() {
     const slides = document.querySelector('.show-three');
     const totalSlides = 6
     const visibleSlides = 3; 
-    const slideWidth = 34; 
+    const slideWidth = 33; 
 
     const slideLeft = _ => {
         index += visibleSlides;
@@ -38,7 +38,7 @@ function NewFunds() {
     }
 
     return (
-        <section>
+        <section className='section'>
             <div className='navigator-box'>
 
                 <div className='view-slider'>

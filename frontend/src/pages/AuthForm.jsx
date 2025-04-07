@@ -10,7 +10,7 @@ function AuthForm() {
     const [showRegister, setShowRegister] = useState(false);
 
     return (
-        <section className="auth">
+        <section className="auth section">
             <div className='auth-menu'>
                 <span className={showRegister?'highlighted' : ''} onClick={() => setShowRegister(true)}>Prisijunk</span>
                 <Link to={'/'} className="link"><span>Justfnd</span></Link>

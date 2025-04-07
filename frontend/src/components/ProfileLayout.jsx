@@ -17,7 +17,7 @@ function ProfileLayout() {
     }
 
     return (
-        <section className='profile'>
+        <section className='profile section'>
             <div className='profile__navigator'>
                 <h2>Tavo Profilis</h2>
                 <Link className="link profile-link" to={'user'}>Profilis</Link>

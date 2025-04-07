@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const useUserData = create(set => ({
     loading: true,
+    funds: [],
     userProfileData: null,
     
     fetchUserProfileData: async _ => {
@@ -25,7 +26,7 @@ const useUserData = create(set => ({
         try{
             const res = await axios.get('/api/user/funds', {withCredentials: true});
             const data = res.data.data;
-            set({loading: false});
+            set({loading: false, funds: data});
             console.log(data)
             return data;
         } catch(error) {

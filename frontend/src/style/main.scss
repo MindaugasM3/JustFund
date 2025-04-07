@@ -146,3 +146,13 @@ input {
 }
     
 
+.Toastify__toast-container {
+    position: fixed !important; /* Ensure it's fixed on the screen */
+    top: 10px !important;       /* Adjust the vertical position */
+    right: 10px !important;     /* Adjust the horizontal position */
+    z-index: 9999 !important;   /* Ensure it's on top of other elements */
+  }
+  
+  .Toastify__toast {
+    width: 300px; /* Adjust width of the toast notifications */
+  }
