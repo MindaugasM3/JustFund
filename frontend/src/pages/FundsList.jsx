@@ -6,14 +6,14 @@ import FundCard from '../components/fundComponents/FundCard';
 
 function Funds() {
 
-    const {funds, fetchFunds, loading} = useFunds()
+    const {funds, fetchFunds, loading, updateFund, deleteFund, createNewFund} = useFunds()
     const [searchTitle, setSearchTitle] = useState('')
     const [avaiableFunds, setAvaiableFunds] = useState([])
 
 
     useEffect(() => {
         fetchFunds();
-    }, [fetchFunds])
+    }, [fetchFunds, updateFund, deleteFund, createNewFund, funds])
     
     useEffect(() => {
         const funds2 = funds.filter(fund => fund.title.toLowerCase().includes(searchTitle));

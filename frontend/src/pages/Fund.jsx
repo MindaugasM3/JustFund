@@ -1,21 +1,27 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import { useFunds } from '../reducers/usefunds'
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 function Fund() {
+    const location = useLocation(); 
+    const fundData = location.state;
 
-    const {funds} = useFunds();
-    const {id} = useParams();
-
-    for (let i = 0; i < funds.length; i++){
-        console.log(funds[i].id)
+    if (!fundData) {
+        return <div>No data available</div>;
     }
 
-    const fundData = funds.map(fund => fund.id === id)
-    console.log(fundData)
+    const funded = (fundData.funded / fundData.fund_goal) * 100;
+
     return (
-        <div>{id}</div>
-    )
+        <div>
+            <h2>{fundData.title}</h2>
+            <p>{fundData.description}</p>
+            <p>Paaukota: €{fundData.funded} / Tikslas: €{fundData.fund_goal}</p>
+            <p>Kategorija: {fundData.category}</p>
+            <div className="fund-bar">
+                <div className="fund-raised" style={{ width: `${funded}%` }}></div>
+            </div>
+        </div>
+    );
 }
 
-export default Fund
+export default Fund;

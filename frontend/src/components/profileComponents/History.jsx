@@ -1,4 +1,4 @@
-// ikelti pakeisti istrinti fund ir dizainas su nuotrukomis 
+
 // fund pilnas puslapis su duomenimis ir vietacomentaramas 
 
 // komentaru crud 

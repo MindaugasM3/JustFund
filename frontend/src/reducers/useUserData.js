@@ -20,21 +20,6 @@ const useUserData = create(set => ({
             return console.log(error)
         }
     },
-    fetchUserFunds: async _ => {
-        set({loading: true});
-
-        try{
-            const res = await axios.get('/api/user/funds', {withCredentials: true});
-            const data = res.data.data;
-            set({loading: false, funds: data});
-            console.log(data)
-            return data;
-        } catch(error) {
-            set({loading: false});
-            return console.log(error)
-        }
-    }
-
 
 }));
 

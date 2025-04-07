@@ -18,7 +18,7 @@ function NewFunds() {
 
     const newestSixFunds = funds.filter(fund => fund.id <= funds.length-4);
 
-
+    console.log(newestSixFunds)
     let index = 1;
     const slides = document.querySelector('.show-three');
     const totalSlides = 6
@@ -27,13 +27,13 @@ function NewFunds() {
 
     const slideLeft = _ => {
         index += visibleSlides;
-        if (index > totalSlides - visibleSlides) index = 0; // Loop back
+        if (index > totalSlides - visibleSlides) index = 0;
         slides.style.transform = `translateX(${-index * slideWidth}%)`;
     }
     
     const slideRight = _ => {
         index -= visibleSlides;
-        if (index < 0) index = totalSlides - visibleSlides; // Loop back
+        if (index < 0) index = totalSlides - visibleSlides;
         slides.style.transform = `translateX(${-index * slideWidth}%)`;
     }
 
@@ -63,7 +63,6 @@ function NewFunds() {
                     </div>
                 </div>
                 <div className='navigacija'>
-                    navigacija
                 </div>
             </div>
         </section>

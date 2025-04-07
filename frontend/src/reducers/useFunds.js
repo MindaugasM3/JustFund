@@ -3,7 +3,7 @@ import axios from 'axios';
 import {v4} from 'uuid';
 
 export const useFunds = create(set => ({
-    loading: false,
+    loading: true,
     funds: [],
     images: [],
     // setImages: newimage => set(state => ({images: [...images, newimage]})),
@@ -64,25 +64,27 @@ export const useFunds = create(set => ({
         }
 
     },
-    updateFund: async fundID => {
+    updateFund: async fundData => {
         set({loading: true})
         try {
-            const res = await axios.put('api/fund/update/:id', fundID, {withCredentials: true});
+            const res = await axios.put(`api/fund/update/${fundData.id}`, fundData, {withCredentials: true});
             set({loading: false})
-            return res.data.data;
+            return res.data;
         } catch(error) {
             console.log(error)
             set({loading: false});
+            return ({success: false})
         }
     },
     deleteFund: async fundID => {
         set({loading: true})
+        
         try {
             const res = await axios.delete(`/api/fund/delete/${fundID}`, {withCredentials: true});
-            set({loading: false})
             set(state => ({
+                loading: false,
                 funds: state.funds.filter(fund => fund.id !== fundID)
-            }))
+              }));
             return res.data;
         } catch(error) {
             console.log(error)
@@ -127,5 +129,20 @@ export const useFunds = create(set => ({
             images: state.images.map(image => image.id === id? {...image, main:true} : {...image, main:false})
         }))
     },
+
+    fetchUserFunds: async _ => {
+        set({loading: true});
+
+        try{
+            const res = await axios.get('/api/user/funds', {withCredentials: true});
+            const data = res.data.data;
+            console.log(data)
+            set({loading: false, funds: data});
+            return data;
+        } catch(error) {
+            set({loading: false});
+            return console.log(error)
+        }
+    }
     
 }));

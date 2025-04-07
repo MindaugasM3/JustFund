@@ -3,6 +3,7 @@ import db from "../config/db.js";
 import { error400, error401, error500 } from "../middlewares/errorHandlers.js"
 import md5 from "md5";
 import fs from 'fs';
+import { json } from "stream/consumers";
 
 
 const backUrl = 'http://localhost:3000';
@@ -32,7 +33,21 @@ export const getFunds = (req, res) => {
 }
 
 export const editFund = (req, res) => {
-    
+    const user_id = req.user.id;
+    const fund_id = req.params.id;
+    const {title, description, fund_goal, category} = req.body;
+    console.log(title, description, fund_goal, category, fund_id, user_id)
+
+    const sql = `
+        UPDATE funds 
+        SET title = ?, description = ?, fund_goal = ?, category = ?
+        WHERE user_id = ? AND id = ?
+    `
+
+    db.query(sql, [title, description, fund_goal, category, user_id, fund_id], (err, result) =>{
+        if(err) return error500(err, res)
+        res.json({success: true, message: 'sekmingai pakeistas fondas'})    
+    })
 }
 
 

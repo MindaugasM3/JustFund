@@ -1,5 +1,6 @@
 import main from '../../assets/main.jpg';
 import '../../style/MainTittle.scss'
+import {Link} from 'react-router-dom'
 
 function MainTitle() {
     return (
@@ -14,7 +15,7 @@ function MainTitle() {
                         Sekmingi fondai prasidėda čią!
                     </div>
                     <div className='introduction__left__text'>
-                        <button className='green-btn'>Pradėti fonda</button>
+                        <button className='green-btn'><Link to={'/newfund'}>Pradėti fonda</Link></button>
                     </div>
                     <div className='introduction__left__phyramid'>
 

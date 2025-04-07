@@ -15,7 +15,10 @@ export default defineConfig({
         },
         '/uploads/': {
             target: 'http://localhost:3000'
-        }
+        },
+        '/api/': {
+            target: 'http://localhost:3000'
+        },
         }
     },
 

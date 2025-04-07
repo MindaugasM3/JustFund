@@ -46,7 +46,7 @@ export default function Header() {
                 </nav>
                 <div className='header-right'>
                     <div className='header-start-fund'>
-                        <a href='#'>Pradėti JustFnd</a>
+                        <Link to='/newfund'>Pradėti JustFund</Link>
                     </div>
 
                     <div className='hamburger'>
