@@ -3,8 +3,6 @@ import db from "../config/db.js";
 import { error400, error401, error500 } from "../middlewares/errorHandlers.js"
 import md5 from "md5";
 import fs from 'fs';
-import { json } from "stream/consumers";
-
 
 const backUrl = 'http://localhost:3000';
 
@@ -15,7 +13,7 @@ export const getFunds = (req, res) => {
         SELECT * 
         FROM funds AS f
         INNER JOIN images as i
-        ON i.fund_id = f.id
+        ON i.fund_id = f.id 
     `
 
     
@@ -145,6 +143,23 @@ export const createFund = (req, res) => {
     
 }
 
+export const makeFund = (req, res) => {
+    const id = req.params.id;
+    const data = req.body.amount;
+    console.log(data, id)
+    const sql = `
+        UPDATE funds
+        SET funded = ?
+        WHERE id = ?
+    `
+
+    db.query(sql, [data, id], (err, result) => {
+        if(err) return error500(err, res);
+        
+        res.json({success: true, msg: 'sveikiname, PAAUKOJOTE, AČIŪ'});
+    })
+}
+
 
 
 
@@ -183,3 +198,40 @@ export const createFund = (req, res) => {
 
 //     }, 1500);
 // });
+
+
+export const fetchFundedHistory = (req, res) => {
+    const id = req.user.id
+
+    const sql = `
+    SELECT * 
+    FROM funds_history
+`
+
+db.query(sql, (err, result) => {
+    if(err) return error500(err, res);
+    
+    res.json({success: true, data: result});
+})
+    
+}
+
+export const saveInFundedHistory = (req, res) => {
+    const {fund_id, amount, name} = req.body;
+    const sql = `
+        INSERT INTO funds_history (name, amount, fund_id)
+        VALUES (?, ?, ?)
+    `
+
+    db.query(sql, [name, amount, fund_id], (err, result) => {
+        console.log('aaaaaaaa')
+        if(err){
+            console.log(result, err)
+            return error500(err, res);
+        } 
+        
+        res.json({success: true, msg: 'sekmingai ikelti duomenys'});
+    })
+
+
+}

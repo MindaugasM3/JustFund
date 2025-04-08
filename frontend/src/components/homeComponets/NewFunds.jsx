@@ -13,7 +13,7 @@ function NewFunds() {
 
     useEffect(() => {
         fetchFunds();
-    }, [])
+    }, [fetchFunds])
 
 
     const newestSixFunds = funds.filter(fund => fund.id <= funds.length-4);
@@ -27,13 +27,13 @@ function NewFunds() {
 
     const slideLeft = _ => {
         index += visibleSlides;
-        if (index > totalSlides - visibleSlides) index = 0;
+        if (index > totalSlides - visibleSlides) index = 0; 
         slides.style.transform = `translateX(${-index * slideWidth}%)`;
     }
     
     const slideRight = _ => {
         index -= visibleSlides;
-        if (index < 0) index = totalSlides - visibleSlides;
+        if (index < 0) index = totalSlides - visibleSlides; 
         slides.style.transform = `translateX(${-index * slideWidth}%)`;
     }
 

@@ -47,9 +47,15 @@ db.query('ALTER TABLE images DROP FOREIGN KEY images_ibfk_1', err => {
     } else console.log('Foreign key drop sekmingas')
 });
 
+db.query('ALTER TABLE funds_history DROP FOREIGN KEY funds_history_ibfk_1', err => {
+    if (err) {
+        console.log('Foreign key drop klaida', err)
+    } else console.log('Foreign key drop sekmingas')
+});
 
 
-const tables = ['images', 'messages', 'comments', 'funds', 'users']
+
+const tables = ['images', 'messages', 'comments', 'funds', 'users', 'funds_history']
 
 const dropTables = async () => {
     for (const table of tables){
@@ -178,7 +184,24 @@ db.query(sql, err => {
     }
 })
 
+sql = `
+    CREATE TABLE funds_history (
+        id int UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(100) NOT NULL,
+        amount DECIMAL(10, 2) NOT NULL,
+        fund_id INT UNSIGNED NOT NULL,
+        FOREIGN KEY (fund_id) REFERENCES funds(id) ON DELETE CASCADE,
+        INDEX (fund_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+`
 
+db.query(sql, err => {
+    if (err) {
+        console.log('funds_history table klaida', err);
+    } else {
+        console.log('funds_history table sukurtas');
+    }
+})
 
 
 // const insertIntoUsers = async _ => {

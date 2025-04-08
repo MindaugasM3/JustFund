@@ -65,10 +65,19 @@ export const useFunds = create(set => ({
 
     },
     updateFund: async fundData => {
+        
+        console.log("Updating fund with ID:", fundData.id);
+        
         set({loading: true})
         try {
             const res = await axios.put(`api/fund/update/${fundData.id}`, fundData, {withCredentials: true});
             set({loading: false})
+            
+            set(state => ({
+                funds: state.funds.map(fund => fund.id === fundData.id?
+                    ({...fund, ...fundData}) 
+                    : fund)}));
+            
             return res.data;
         } catch(error) {
             console.log(error)
@@ -84,7 +93,13 @@ export const useFunds = create(set => ({
             set(state => ({
                 loading: false,
                 funds: state.funds.filter(fund => fund.id !== fundID)
-              }));
+            }));
+
+            set(state => ({
+                funds: state.funds.filter(fund => fund.id !== fundID)
+            }));
+
+            //   funds
             return res.data;
         } catch(error) {
             console.log(error)
@@ -134,15 +149,56 @@ export const useFunds = create(set => ({
         set({loading: true});
 
         try{
+            
             const res = await axios.get('/api/user/funds', {withCredentials: true});
             const data = res.data.data;
             console.log(data)
-            set({loading: false, funds: data});
+            set({loading: false});
             return data;
         } catch(error) {
             set({loading: false});
             return console.log(error)
         }
-    }
+    },
+    fundit: async (amount, id) => {
+        set({loading: true});
+        try{
+            const res = await axios.put(`/api/fund/fundit/${id}`, {amount});
+            const data = res.data;
+            console.log(data)
+            set({loading: false});
+            return {success: true, data: data};
+        } catch(error) {
+            set({loading: false});
+            return ({success: false})
+        }
+    },
+    saveFundDonation: async funddata => {
+        set({loading: true});
+        try{
+            const res = await axios.post(`/api/fund/funded/save`, funddata, {withCredentials: true});
+            console.log(res)
+            set({loading: false});
+            return {success: true};
+        } catch(error) {
+            set({loading: false});
+            return ({success: false})
+        }
+    },
+    fetchDonationHistory: async _ => {
+        set({loading: true});
+        try{
+            const res = await axios.get(`/api/fund/funded/get`, {withCredentials: true});
+            const data = res.data.data;
+            console.log(data)
+            set({loading: false});
+            return {success: true, data: data};
+        } catch(error) {
+            set({loading: false});
+            return ({success: false})
+        }
+    },
+
+    
     
 }));

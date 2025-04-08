@@ -20,6 +20,11 @@ export default function Header() {
         const res = await userLogout();
         console.log('atsijungiai', res)
         console.log(loggedin)
+        if (res.success) {
+            toast.success('Sekmingai atsijungėt!');
+        } else {
+            toast.error('Nepavyko atsijungti!');
+        }
     }
 
     return (
@@ -59,8 +64,8 @@ export default function Header() {
                                 <NavLink onClick={toggleHamburger} to='/about' className='navlink'>Apie mus</NavLink>
                                 <NavLink onClick={toggleHamburger} to='/contact' className='navlink'>Susisiek</NavLink>
                                 <div className='hamburger__menu__buttons'>
-                                    <button className='yellow-btn'>Pradėti Justfund</button>
-                                    <button className='green-btn'>Prisijunk</button>
+                                    <button className='yellow-btn'><NavLink to='/user' onClick={toggleHamburger}>Pradėti Justfund</NavLink></button>
+                                    <button className='green-btn'><NavLink onClick={toggleHamburger} to='/authForm'>Prisijunk</NavLink></button>
                                 </div>
                             </div>
                         </div>

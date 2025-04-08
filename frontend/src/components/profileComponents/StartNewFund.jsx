@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useFunds } from "../../reducers/usefunds";
+import { toast } from "react-toastify";
 
 
 function StartNewFund() {
@@ -9,10 +10,15 @@ function StartNewFund() {
 
     const submitNewFund = async _ => {
         const res = await createNewFund(newFundData, images);
-        console.log(res)
-
+        // console.log(res)
+        if (res.success) {
+            toast.success('Fondas sekmingai Ikeltas!');
+        } else {
+            toast.error('Nepavyko ikelti fondo!');
+        }
+        setNewFundData({title: '', description: '', category: '', fund_goal: ''})
     }
-
+    
     const readFile = async (e, id) => {
         try {
             const img = e.target.files[0];
@@ -23,7 +29,6 @@ function StartNewFund() {
         }catch(error){
             console.log(error)
         }
-
     }
 
     return (

@@ -1,5 +1,5 @@
 import express from 'express';
-import { createFund, deleteFund, editFund, getFunds, saveFundImage } from '../controllers/funds.controllers.js';
+import { createFund, deleteFund, editFund, fetchFundedHistory, getFunds, makeFund, saveFundImage, saveInFundedHistory } from '../controllers/funds.controllers.js';
 import { authMiddlewareToken } from '../middlewares/authMiddleware.js';
 
 const fundsRouter = express.Router();
@@ -12,6 +12,12 @@ fundsRouter.delete('/fund/delete/:id', authMiddlewareToken, deleteFund);
 
 fundsRouter.post('/fund/new', authMiddlewareToken, createFund);
 
-fundsRouter.post('/fund/images', saveFundImage)
+fundsRouter.post('/fund/images', saveFundImage);
+
+fundsRouter.put('/fund/fundit/:id', makeFund);
+
+fundsRouter.get('/fund/funded/get', authMiddlewareToken, fetchFundedHistory)
+
+fundsRouter.post('/fund/funded/save', authMiddlewareToken, saveInFundedHistory)
 
 export default fundsRouter;

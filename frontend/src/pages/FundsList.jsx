@@ -9,19 +9,27 @@ function Funds() {
     const {funds, fetchFunds, loading, updateFund, deleteFund, createNewFund} = useFunds()
     const [searchTitle, setSearchTitle] = useState('')
     const [avaiableFunds, setAvaiableFunds] = useState([])
-
-
+    const [showAdd, setShowAdd] = useState(null)
+    
     useEffect(() => {
         fetchFunds();
-    }, [fetchFunds, updateFund, deleteFund, createNewFund, funds])
+    }, [fetchFunds, updateFund, deleteFund, createNewFund])
     
     useEffect(() => {
-        const funds2 = funds.filter(fund => fund.title.toLowerCase().includes(searchTitle));
-        setAvaiableFunds(funds2)
-    }, [searchTitle])
+        console.log(funds)
+        const fundsFiltered = funds.filter(fund => 
+            fund.title.toLowerCase().includes(searchTitle.toLowerCase())
+        );
+        const fundsNotReachedGoal = fundsFiltered.filter(fund => fund.funded < fund.fund_goal);
+        const fundsReachedGoal = fundsFiltered.filter(fund => fund.funded >= fund.fund_goal);
+        const fundsSorted = [...fundsNotReachedGoal].reverse();
+        const combinedFunds = [...fundsSorted, ...fundsReachedGoal];
+    
+        setAvaiableFunds(combinedFunds);
+    }, [searchTitle, funds]);
     
     const handleCategories = fundsArray => {
-        const filtered = fundsArray.filter((fund, index, self) => 
+        const filtered = fundsArray?.filter((fund, index, self) => 
             self.findIndex(fundOld => 
             fundOld.category === fund.category) === index);
             return filtered;
@@ -32,7 +40,7 @@ function Funds() {
             <div className="funds-page__categories">
                 <div>Categories:</div>
                 {
-                    avaiableFunds.length === 0 ? handleCategories(funds).map(fundCategory => <div key={fundCategory.id}>{fundCategory.category}</div>)
+                    avaiableFunds?.length === 0 ? handleCategories(funds).map(fundCategory => <div key={fundCategory.id}>{fundCategory.category}</div>)
                     : 
                     handleCategories(avaiableFunds).map(fundCategory => <div key={fundCategory.id}>{fundCategory.category}</div>)
                 }   
@@ -46,8 +54,8 @@ function Funds() {
                 </div>
                 <div className="funds-page__main__funds">
                     {
-                    avaiableFunds.length === 0 ? funds.map(aFund => <FundCard key={aFund.id} fundData={aFund}/>):
-                    avaiableFunds.map(aFund => <FundCard key={aFund.id} fundData={aFund}/>)
+                    avaiableFunds.length === 0 ? funds.map(aFund => <FundCard setShowAdd={setShowAdd} showAdd={showAdd} key={aFund.id} fundData={aFund}/>):
+                    avaiableFunds.map(aFund => <FundCard showAdd={showAdd} setShowAdd={setShowAdd} key={aFund.id} fundData={aFund}/>)
                     }
                 </div>
             </div>

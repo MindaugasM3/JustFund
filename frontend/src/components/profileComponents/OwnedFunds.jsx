@@ -5,32 +5,23 @@ import { toast } from "react-toastify";
 import OwnedFundCard from "./OwnedFundCard";
 
 function OwnedFunds() {
-    const { loading, fetchUserFunds, funds, deleteFund } = useFunds();
+    const { loading, fetchUserFunds, funds } = useFunds();
     const [pageFunds, setPageFunds] = useState(null);
     const [pressedDelete, setPressedDelete] = useState(false);
     const [editData, setEditData] = useState(null);
 
-    
+    console.log(pageFunds)
     useEffect(() => {
         const getUserFundsFunc = async () => {
             const res = await fetchUserFunds();
+            console.log(res)
             setPageFunds(res.slice(0, 5)); 
         };
         getUserFundsFunc();
-    }, [fetchUserFunds]); 
+    }, []); 
 
     console.log(pageFunds)
-    // const handleDelete = async (id) => {
-    //     setPressedDelete(true);
-    //     const res = await deleteFund(id);
-    //     if (res.success) {
-    //         toast.success('Fondas sekmingai ištrintas!');
-    //         setPageFunds(prevFunds => prevFunds.filter(fund => fund.id !== id));
-    //     } else {
-    //         toast.error('Nepavyko ištrinti fondo!');
-    //     }
-    //     setPressedDelete(false); // Reset delete button state
-    // };
+
 
     const handlePages = (pages) => {
         const pagesDiv = [];
@@ -89,7 +80,7 @@ function OwnedFunds() {
             </div>
             <div>
                 <div className="user-funds-pages">
-                    {funds?.length > 5
+                    {pageFunds?.length > 5
                         ? handlePages(Math.floor(funds.length / 5.1))
                         : "Nėra puslapiu"}
                 </div>

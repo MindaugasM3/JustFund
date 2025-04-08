@@ -1,0 +1,39 @@
+@use 'var' as v;
+
+.fund-page {
+    padding: 60px;
+    background-color: v.$l_purple;
+    display: flex;
+    gap: 5%;
+    font-family: v.$pt;
+
+    .left-size {
+        width: 70%;
+        img{
+            width: 800px;
+            height: 520px;
+        }
+    }
+
+    .right-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+
+        .fund-bar {
+            display: flex;
+            width: 250px;
+            height: 15px;
+            background-color: v.$gray;
+            border-radius: 20px;
+            padding: 3px;
+
+            .fund-raised {
+                background-color: v.$green;
+                padding: 1px;
+                border-radius: 10px;
+            }
+        }
+    }
+}

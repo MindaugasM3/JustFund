@@ -36,7 +36,7 @@
     margin: 40px;
     min-width: 310px;
     max-width: 20%;
-    height: 350px;
+    height: 400px;
 
     &__pad {
         display: flex;
@@ -44,6 +44,7 @@
         padding: 25px;
         align-items: left;
         gap: 10px;
+        
 
         .fund-date {
             display: flex;
@@ -82,4 +83,8 @@
             }
         }
     }
+}
+
+.donation-form{
+    display: flex;
 }

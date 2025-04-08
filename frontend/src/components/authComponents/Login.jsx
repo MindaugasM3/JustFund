@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useUsers from '../../reducers/useUsers';
+import { toast } from 'react-toastify';
 
 function Login() {
 
@@ -10,6 +11,11 @@ function Login() {
         const resLogin = await userLogin(login);
         console.log(resLogin);
 
+        if (resLogin.success) {
+                toast.success('Sekmingai prisijungėt!');
+            } else {
+                toast.error('Nepavyko prisijungti!');
+            }
 
         setLogin({name: '', password: ''});
     }

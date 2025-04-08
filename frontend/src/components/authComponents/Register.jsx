@@ -1,6 +1,7 @@
 import { useState } from "react"
 import useUsers from "../../reducers/useUsers"
 import Login from "./Login"
+import { toast } from "react-toastify"
 
 
 function Register() {
@@ -11,6 +12,11 @@ function Register() {
     const handleRegister = async _ => { 
         const resRegister = await userRegister(register)
         console.log(resRegister)
+        if (resRegister.success) {
+            toast.success('Sekmingai prisijungėt!');
+        } else {
+            toast.error('Nepavyko prisijungti!');
+        }
         
         
         setRegister({name: '', email: '', password: ''});

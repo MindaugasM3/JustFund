@@ -16,6 +16,7 @@ import History from './components/profileComponents/History';
 import ProfileLayout from './components/ProfileLayout';
 import Fund from './pages/Fund';
 import { ToastContainer } from 'react-toastify'
+import { useFunds } from './reducers/usefunds';
 
     
 function App() {
