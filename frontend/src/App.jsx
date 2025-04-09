@@ -16,7 +16,7 @@ import History from './components/profileComponents/History';
 import ProfileLayout from './components/ProfileLayout';
 import Fund from './pages/Fund';
 import { ToastContainer } from 'react-toastify'
-import { useFunds } from './reducers/usefunds';
+import { useFunds } from './reducers/useFunds';
 
     
 function App() {
@@ -48,7 +48,7 @@ function App() {
             </div>
         )
     }
-    
+    // <Route path='home*/*' element={<Page404/>}/>
     return (
         <>
             <ToastContainer className='Toastify__toast-container'/>

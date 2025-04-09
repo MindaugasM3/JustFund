@@ -21,7 +21,7 @@ function AuthForm() {
                 <Register/>
                 <div className={`introduction-background ${showRegister? 'slide-right' : 'slide-left'}`}>
                     <div className='introduction'>
-                        <p>Pradėk fonda šiandiena!</p>
+                        <p className="middle-name">Pradėk fonda šiandiena!</p>
                     </div>
                 </div>
             </div>

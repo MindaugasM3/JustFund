@@ -7,6 +7,7 @@ import fundsRouter from './routes/funds.routes.js';
 import userDataRouter from './routes/userData.routes.js';
 import path from "path";
 import { fileURLToPath } from 'url';
+import commentsRouter from './routes/comments.routes.js';
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(cors({origin: frontURL, credentials: true}));
 app.use('/auth', usersRouter);
 app.use('/api', fundsRouter);
 app.use('/api', userDataRouter);
+app.use('/api', commentsRouter);
 
 
 app.listen(PORT, _ => {

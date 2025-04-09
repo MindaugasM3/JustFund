@@ -1,20 +1,27 @@
 @use 'var' as v;
 
+.main-page {
+    background-color: v.$l_gray;
+    
+}
+
 .section {
     display: flex;
     width: 100vw;
     padding: 50px;
     height: 800px;
+    
+    
+    
 
 
     .navigator-box {
-        
         display: flex;
         flex-direction: column; 
         width: 100%;
+        
 
         .navigacija {
-           
             height: 20%;
             display: flex;
             justify-content: center;
@@ -23,7 +30,7 @@
         .view-slider {
             display: flex;
             flex-direction: row;
-            border: 1px solid black;
+            
             height: 80%;
             justify-content: space-between;
             

@@ -3,7 +3,7 @@ import '../../style/NewFunds.scss'
 import NewFundsSliderCards from './NewFundsSliderCards';
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
-import { useFunds } from '../../reducers/usefunds';
+import { useFunds } from '../../reducers/useFunds';
 
 
 
@@ -13,17 +13,17 @@ function NewFunds() {
 
     useEffect(() => {
         fetchFunds();
-    }, [fetchFunds])
+    }, [])
 
 
-    const newestSixFunds = funds.filter(fund => fund.id <= funds.length-4);
+    const newestSixFunds = funds?.filter(fund => fund.id <= funds.length-4);
 
     console.log(newestSixFunds)
     let index = 1;
     const slides = document.querySelector('.show-three');
     const totalSlides = 6
     const visibleSlides = 3; 
-    const slideWidth = 33; 
+    const slideWidth = 34; 
 
     const slideLeft = _ => {
         index += visibleSlides;
@@ -38,7 +38,7 @@ function NewFunds() {
     }
 
     return (
-        <section className='section'>
+        <section className='section main-page'>
             <div className='navigator-box'>
 
                 <div className='view-slider'>
@@ -51,7 +51,7 @@ function NewFunds() {
                         <div className='show-three'>
 
                             {
-                                newestSixFunds.map(fund => <NewFundsSliderCards key={fund.id} fundData={fund}/>)
+                                newestSixFunds?.map(fund => <NewFundsSliderCards key={fund.id} fundData={fund}/>)
                             }
 
                         </div>

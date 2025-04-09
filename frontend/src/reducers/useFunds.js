@@ -1,18 +1,29 @@
 import {create} from 'zustand';
 import axios from 'axios';
 import {v4} from 'uuid';
+import { persist } from 'zustand/middleware';
+const frontendUrl = import.meta.env.VITE_FRONTEND_URL;
 
 export const useFunds = create(set => ({
-    loading: true,
+    // persist: persist(
+    //     (set) => ({
+    //       funds: [], // Store the funds data
+    //       setFunds: (newFunds) => set({ funds: newFunds }), // Set the funds data
+    //     }),
+    //     {
+    //       name: 'funds-storage', // Persist to localStorage
+    //     }
+    //   ),
     funds: [],
     images: [],
+    loading: true,
     // setImages: newimage => set(state => ({images: [...images, newimage]})),
     setFunds: newfund => set({...funds, newfund}),
 
     fetchFunds: async _ => {
         set({loading: true})
         try {
-            const res = await axios.get('api/funds');
+            const res = await axios.get(`${frontendUrl}/api/funds`);
             const data = res.data.data;
             set({funds: data, loading: false})
         } catch(error) {

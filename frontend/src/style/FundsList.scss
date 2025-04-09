@@ -36,7 +36,7 @@
     margin: 40px;
     min-width: 310px;
     max-width: 20%;
-    height: 400px;
+    height: 500px;
 
     &__pad {
         display: flex;
@@ -85,6 +85,13 @@
     }
 }
 
+.from-to-meter{
+    display: flex;
+    justify-content: space-between;
+
+}
+
 .donation-form{
     display: flex;
+    flex-direction: column; 
 }

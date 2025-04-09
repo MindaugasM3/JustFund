@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useFunds } from '../../reducers/usefunds';
+import { useFunds } from '../../reducers/useFunds';
+import { Link } from 'react-router-dom';
 
 function FundCard({ fundData, onUpdateFund, showAdd, setShowAdd }) {
     const [fundingAmount, setFundingAmount] = useState('');
@@ -41,7 +42,7 @@ function FundCard({ fundData, onUpdateFund, showAdd, setShowAdd }) {
     };
 
     return (
-        <div className="fund-card">
+        <Link to={`/fund/`+fundData.id} state={fundData} className="fund-card">
             <div className="fund-card__pad">
                 <div className="image-box">
                     <img src={fundData.url} alt={fundData.title} />
@@ -51,14 +52,18 @@ function FundCard({ fundData, onUpdateFund, showAdd, setShowAdd }) {
                 <div className="fund-bar">
                     <div className="fund-raised" style={{ width: `${fundedPercentage}%` }}></div>
                 </div>
-                <span>€ {parseFloat((fundData.funded)).toFixed(2)}</span>
+                <div className='from-to-meter'>
+                    <span>€ {parseFloat((fundData.funded)).toFixed(2)}</span>
+                    <span>€ {parseFloat((fundData.fund_goal)).toFixed(2)}</span>
+                </div>
+                
                 <span className="fund-date">{fundData.updated_at.split('T')[0]}</span>
             </div>
             <button onClick={_ => showAdd !== fundData.id? setShowAdd(fundData.id): setShowAdd(null)}>noriu paaukoti</button>
             {showAdd === fundData.id && (
     !showFundForm ? (
         <button onClick={() => { setShowFundForm(true) }} className="yellow-btn">
-            Donate
+            Paaukok
         </button>
     ) : (
         <div className="donation-form">
@@ -84,7 +89,7 @@ function FundCard({ fundData, onUpdateFund, showAdd, setShowAdd }) {
         </div>
     )
 )}
-        </div>
+        </Link>
     );
 }
 

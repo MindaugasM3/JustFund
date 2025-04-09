@@ -2,7 +2,7 @@
 // fund pilnas puslapis su duomenimis ir vietacomentaramas 
 
 import { useEffect, useState } from "react"
-import { useFunds } from "../../reducers/usefunds"
+import { useFunds } from "../../reducers/useFunds"
 import useUserData from "../../reducers/useUserData";
 
 // komentaru crud 
