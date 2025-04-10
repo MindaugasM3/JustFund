@@ -1,7 +1,7 @@
 import {create} from 'zustand';
 import axios from 'axios';
 import {v4} from 'uuid';
-import { persist } from 'zustand/middleware';
+// import { persist } from 'zustand/middleware';
 const frontendUrl = import.meta.env.VITE_FRONTEND_URL;
 
 export const useFunds = create(set => ({
@@ -23,7 +23,7 @@ export const useFunds = create(set => ({
     fetchFunds: async _ => {
         set({loading: true})
         try {
-            const res = await axios.get(`${frontendUrl}/api/funds`);
+            const res = await axios.get(frontendUrl+`/api/funds`);
             const data = res.data.data;
             set({funds: data, loading: false})
         } catch(error) {

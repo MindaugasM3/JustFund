@@ -1,16 +1,19 @@
 import axios from 'axios';
+import { v4 } from 'uuid';
 import { create } from 'zustand';
 
-export const useComments = create(set => ({
+const frontendUrl = import.meta.env.VITE_FRONTEND_URL;
+
+export const useComments = create((set) => ({
     comments: [],
     loading: true,
     
     fetchComments: async fund_id => {
-
+        console.log(fund_id)
         set({loading: true})
 
         try{
-            const res = await axios.get(`api/comments/${fund_id}`)
+            const res = await axios.get(frontendUrl+`/api/comments/${fund_id}`)
             const data = res.data.data;
             set({comments: data, loading: false})
             return data;
@@ -21,16 +24,38 @@ export const useComments = create(set => ({
         }
 
     },
-    writeComment: async (commentData) => {
+    writeComment: async commentData => {
 
         set({loading: true})
 
         try{
-            const res = await axios.post(`api/comments/create`, commentData, {withCredentials: true})
-            const data = res.data.data;
+            const res = await axios.post(frontendUrl+`/api/comments/create`, commentData, {withCredentials: true})
+            const data = res.data;
             set({loading: false})
+            const date = new Date().toISOString();
             set(state => ({
-                comments: [commentData, ...state.comments]
+                comments: [{...commentData, created_at: date, id: v4()}, ...state.comments]
+            }));
+            return data;
+
+        }catch(error) {
+            set({loading: false})
+            console.log(error)
+            return {success: false}
+        }
+
+    },
+    updateComment: async commentData => {
+
+        set({loading: true})
+
+        try{
+            const res = await axios.put(frontendUrl+`/api/comments/create`, commentData, {withCredentials: true})
+            const data = res.data;
+            set({loading: false})
+            // const date = new Date().toISOString();
+            set(state => ({
+                comments: [{...commentData, id: v4()}, ...state.comments]
             }));
             return data;
 

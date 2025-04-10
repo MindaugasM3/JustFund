@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { RingLoader } from "react-spinners";
-import { useFunds } from "../../reducers/usefunds";
+import { useFunds } from "../../reducers/useFunds";
 import { toast } from "react-toastify";
 import OwnedFundCard from "./OwnedFundCard";
 
