@@ -46,16 +46,34 @@ export const useComments = create((set) => ({
 
     },
     updateComment: async commentData => {
-
         set({loading: true})
 
         try{
-            const res = await axios.put(frontendUrl+`/api/comments/create`, commentData, {withCredentials: true})
+            const res = await axios.put(frontendUrl+`/api/comments/update`, commentData, {withCredentials: true})
             const data = res.data;
             set({loading: false})
-            // const date = new Date().toISOString();
+            const date = new Date().toISOString();
             set(state => ({
-                comments: [{...commentData, id: v4()}, ...state.comments]
+                comments: state.comments.map(comment => comment.id === commentData.id? 
+                    {...comment, content: commentData.content} : comment
+                )})); // pataisyti
+            return data;
+
+        }catch(error) {
+            set({loading: false})
+            console.log(error)
+            return {success: false}
+        }
+    },
+    deleteComment: async id => {
+        set({loading: true})
+
+        try{
+            const res = await axios.delete(frontendUrl+`/api/comments/delete/${id}`, {withCredentials: true})
+            const data = res.data;
+            set({loading: false})
+            set(state => ({
+                comments: state.comments.filter(comment => comment.id !== id)
             }));
             return data;
 
@@ -64,7 +82,6 @@ export const useComments = create((set) => ({
             console.log(error)
             return {success: false}
         }
-
     },
 
 }))

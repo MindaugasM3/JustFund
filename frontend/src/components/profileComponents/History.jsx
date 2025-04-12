@@ -12,30 +12,30 @@ import useUserData from "../../reducers/useUserData";
 
 function History() {
 
-    const {fetchDonationHistory, fetchUserFunds} = useFunds();
-    const [fundsHistory, setFundsHistory] = useState();
+    const {fetchDonationHistory, fetchUserFunds, fundsHistory} = useFunds();
     const [userFunds, setUserFunds] = useState();
 
     useEffect(() => {
-        
-        const getFundsHistory = async _ => {
-            try{
-                const fundsHsitory = await fetchDonationHistory()
-                console.log(fundsHsitory)
-                setFundsHistory(fundsHsitory)
-            } catch(error) {
-                console.log(error)
-            }
-        }
-        getFundsHistory()
+        fetchDonationHistory()
     }, [])
 
-    console.log(userFunds)
     console.log(fundsHistory)
-    
 
     return (
-        <div>History</div>
+        <div className="history-window">
+            <div className="fund-history-box">
+                {
+                    fundsHistory.length > 0? fundsHistory.map(fund => (
+                        <div className="history-card">
+                            <div>{fund.name}</div>
+                            <div className="amount">{fund.amount}</div>
+                        </div>
+                    ))
+                        :
+                        <div>nėra fondu aukojimo istorijos</div>
+                }
+            </div>
+        </div>
     )
 }
 

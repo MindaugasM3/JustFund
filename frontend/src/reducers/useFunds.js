@@ -16,6 +16,7 @@ export const useFunds = create(set => ({
     //   ),
     funds: [],
     images: [],
+    fundsHistory: [],
     loading: true,
     // setImages: newimage => set(state => ({images: [...images, newimage]})),
     setFunds: newfund => set({...funds, newfund}),
@@ -203,10 +204,9 @@ export const useFunds = create(set => ({
             const data = res.data.data;
             console.log(data)
             set({loading: false});
-            return {success: true, data: data};
+            set({fundsHistory: data})
         } catch(error) {
             set({loading: false});
-            return ({success: false})
         }
     },
 

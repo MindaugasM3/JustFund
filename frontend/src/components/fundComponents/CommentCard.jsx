@@ -1,15 +1,52 @@
 import { useState } from "react";
 import { useComments } from "../../reducers/useComments";
+import { toast } from "react-toastify";
 
-function CommentCard({commentData}) {
+function CommentCard({commentData, editOneAtTheTime, setEditOneAtTheTime}) {
 
     const [updateCommentState, setUpdateCommentState] = useState(false)
     const [updateCommentValue, setUpdateCommentValue] = useState(commentData.content)
+    const [countClicks, setCountClicks] = useState(0)
 
-    const {} = useComments();
+    const {updateComment, deleteComment} = useComments();
 
-    const handleUpdateComment = _ => {
+    const handleUpdateComment = async _ => {
+        setCountClicks(0)
+        if(updateCommentValue.length <= 0) {
+            toast.error('negali pakeisti į tuščia komentarą!')
+            return
+        }
 
+       
+        const res = await updateComment({content: updateCommentValue, 
+                                        id: commentData.id})
+        console.log(res)
+        if(res.success){
+            toast.success('pavyko pakeisti komentara!');
+        } else {
+            toast.error('nepavyko pakeisti komentaro!')
+        }
+    }
+
+    const handleUpdateFuncs = _ => {
+        if (countClicks === 0) {
+            setEditOneAtTheTime(commentData.id)
+        }
+        setCountClicks(a => a+1)
+        setUpdateCommentState(!updateCommentState)
+        if(countClicks >= 1){
+            handleUpdateComment()
+            setEditOneAtTheTime(null)
+        } 
+    }
+
+    const handleDeleteComment = async _ => {
+        const res = await deleteComment(commentData.id);
+        if(res.success){
+            toast.success('komentaras sekmingai istrintas')
+        }else {
+            toast.error('nepavyko istrinti komentaro')
+        }
     }
 
 
@@ -21,7 +58,7 @@ function CommentCard({commentData}) {
                         {commentData.name}
                     </div>
                     <div>
-                        <textarea onChange={e => setUpdateCommentValue(e.target.value)} className="update-comment" disabled={!updateCommentState} value={updateCommentValue}></textarea>
+                        <textarea id={`card${commentData.id}`} onChange={e => setUpdateCommentValue(e.target.value)} className="update-comment" disabled={!updateCommentState} value={updateCommentValue}></textarea>
                     </div>
                 </div>
                 <div className="comment-date">
@@ -31,8 +68,8 @@ function CommentCard({commentData}) {
                 {   
                     commentData.user_id === commentData.userID?
                         <div className="btn-functions">
-                            <button className="red-btn">Ištrinti</button>
-                            <button onClick={e => setUpdateCommentState(!updateCommentState)} className={updateCommentState? "green-btn" : "yellow-btn"}>Atnaujinti</button>
+                            <button onClick={handleDeleteComment} className="red-btn">Ištrinti</button>
+                            <button disabled={editOneAtTheTime !== commentData.id && editOneAtTheTime !== null} onClick={handleUpdateFuncs} className={updateCommentState? "green-btn" : "yellow-btn"}>Atnaujinti</button>
                         </div>
                         :
                         <></>

@@ -15,7 +15,9 @@ function Layout() {
                 <Outlet/>
                 
             </main>
+            {/* <div style={{position: 'fixed'}}>hi</div> */}
             <Footer/>
+            
         </>
     )
 }

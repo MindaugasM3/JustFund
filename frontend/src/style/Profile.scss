@@ -136,3 +136,86 @@
     align-items: flex-end;
     gap: 20px;
 }
+
+.history-window {
+    width: 50vw;
+
+    .fund-history-box{ 
+        display: flex;
+        padding: 60px;
+        flex-direction: column;
+        width: 100%;
+
+        .history-card {
+            display: flex;
+            gap: 20px;
+            width: 50%;
+            justify-content: space-between;
+        }
+}
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 35vw;
+    padding: 20px;
+    gap: 10px;
+
+    .display-texts {
+        width: 100%;
+        background-color: v.$vl_gray;
+        height: 80%;
+
+        .user-chats {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            padding: 40px;
+
+            &__box {
+                display: flex;
+                flex-direction: column;
+                border-radius: 20px;
+                width: 40%;
+                background-color: v.$green;
+                padding: 20px;
+                align-items: end;
+            }
+        }
+
+        .friend-chats {
+
+            &__box {
+                display: flex;
+                flex-direction: column;
+                border-radius: 20px;
+                width: 40%;
+                background-color: v.$vl_blue;
+                padding: 20px;
+            }
+        }
+    }
+
+    .display-texts{
+        padding: 20px;
+    }
+
+    .text-area {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        width: 100%;
+
+        textarea {
+            width: 60%;
+        }
+
+        button {
+            width: 20%;
+            align-items: center;
+        }
+    }
+}

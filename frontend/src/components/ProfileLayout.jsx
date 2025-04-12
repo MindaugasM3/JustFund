@@ -24,6 +24,7 @@ function ProfileLayout() {
                 <Link className="link profile-link" to={'history'}>Istorija</Link>
                 <Link className="link profile-link" to={'userfunds'}>Tavo fondai</Link>
                 <Link className="link profile-link" to={'newfund'}>Naujas fondas</Link>
+                <Link className="link profile-link" to={'chat'}>Pokalbiai</Link>
             </div>
         <div>
             <Outlet/>    

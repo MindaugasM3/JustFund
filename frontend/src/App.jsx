@@ -17,6 +17,7 @@ import ProfileLayout from './components/ProfileLayout';
 import Fund from './pages/Fund';
 import { ToastContainer } from 'react-toastify'
 import { useFunds } from './reducers/useFunds';
+import Chat from './components/profileComponents/Chat';
 
     
 function App() {
@@ -64,6 +65,7 @@ function App() {
                             <Route path='newfund' element={<StartNewFund />} />
                             <Route path='userfunds' element={<OwnedFunds />} />
                             <Route path='history' element={<History />} />
+                            <Route path='chat' element={<Chat />} />
                         </Route>
                 </Route>
             </Routes>
