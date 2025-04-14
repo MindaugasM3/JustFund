@@ -172,12 +172,16 @@ export const useFunds = create(set => ({
             return console.log(error)
         }
     },
-    fundit: async (amount, id) => {
+    fundit: async (donate, id) => {
         set({loading: true});
         try{
-            const res = await axios.put(`/api/fund/fundit/${id}`, {amount});
+            const res = await axios.put(`/api/fund/fundit/${id}`, {donate});
             const data = res.data;
-            console.log(data)
+            console.log('aaaa')
+            console.log(id)
+            set(state => ({
+                funds: state.funds.map(fund => fund.id === id? {...fund, amount: fund.amount+Number(donate)} : fund)
+        }))
             set({loading: false});
             return {success: true, data: data};
         } catch(error) {

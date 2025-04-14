@@ -145,17 +145,17 @@ export const createFund = (req, res) => {
 
 export const makeFund = (req, res) => {
     const id = req.params.id;
-    const data = req.body.amount;
-    console.log(data, id)
+    const donate = req.body.donate;
+    console.log(donate)
     const sql = `
         UPDATE funds
-        SET funded = ?
+        SET funded = funded + ?
         WHERE id = ?
     `
 
-    db.query(sql, [data, id], (err, result) => {
+    db.query(sql, [donate, id], (err, result) => {
         if(err) return error500(err, res);
-        
+        console.log('aaa')
         res.json({success: true, msg: 'sveikiname, PAAUKOJOTE, AČIŪ'});
     })
 }
@@ -218,13 +218,13 @@ db.query(sql, (err, result) => {
 
 export const saveInFundedHistory = (req, res) => {
     const {fund_id, amount, name} = req.body;
+
     const sql = `
         INSERT INTO funds_history (name, amount, fund_id)
         VALUES (?, ?, ?)
     `
 
     db.query(sql, [name, amount, fund_id], (err, result) => {
-        console.log('aaaaaaaa')
         if(err){
             console.log(result, err)
             return error500(err, res);

@@ -39,7 +39,7 @@ function Comments({fundId}) {
             <div className="write-comment-box">
                 <label htmlFor="comment"></label>
                 <textarea className="update-comment" value={commentContent.content} onChange={e => setCommentContent({...commentContent, content: e.target.value})} id="comment"/>
-                <button onClick={handleCreateComment} className="green-btn">Skelbti</button>
+                <button onClick={handleCreateComment} className="green-btn comments-btn">Skelbti</button>
             </div>
             <div className="comments-list">
                 {comments.map(comment => (
