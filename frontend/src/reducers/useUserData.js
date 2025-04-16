@@ -20,6 +20,20 @@ const useUserData = create(set => ({
             return console.log(error)
         }
     },
+    updateUserData: async userData => {
+        set({loading: true});
+
+        try{
+            const res = await axios.put('/api/user/update', userData, {withCredentials: true});
+            const data = res.data;
+            set({loading: false});
+            console.log(data)
+            return data;
+        } catch(error) {
+            set({loading: false});
+            return console.log(error)
+        }
+    },
 
 }));
 
